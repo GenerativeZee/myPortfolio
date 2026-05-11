@@ -38,21 +38,22 @@ export async function POST(req: Request) {
     const { messages } = await req.json();
 
     // Ensure API key exists
-    if (!process.env.OPENAI_API_KEY) {
+    if (!process.env.GEMINI_API_KEY) {
       return NextResponse.json(
-        { error: "OpenAI API key not configured. Please add OPENAI_API_KEY to your .env.local file." },
+        { error: "Gemini API key not configured. Please add GEMINI_API_KEY to your Vercel settings." },
         { status: 500 }
       );
     }
 
-    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+    // Using Google Gemini's official OpenAI compatibility endpoint
+    const response = await fetch("https://generativelanguage.googleapis.com/v1beta/openai/chat/completions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
+        Authorization: `Bearer ${process.env.GEMINI_API_KEY}`,
       },
       body: JSON.stringify({
-        model: "gpt-4o-mini", // Fast and cost-effective for portfolio chat
+        model: "gemini-1.5-flash", // Extremely fast, incredibly smart, and generous free tier
         messages: [{ role: "system", content: SYSTEM_PROMPT }, ...messages],
         temperature: 0.7,
         max_tokens: 500,
