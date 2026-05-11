@@ -68,18 +68,41 @@ export default function Chatbot() {
   return (
     <>
       {/* Floating Toggle Button */}
-      <motion.button
-        initial={{ scale: 0, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ delay: 1 }}
-        onClick={() => setIsOpen(true)}
-        className={`fixed bottom-6 right-6 md:bottom-8 md:right-8 z-50 p-4 rounded-full bg-gradient-to-r from-indigo-600 to-violet-600 text-white shadow-lg shadow-indigo-500/30 hover:shadow-indigo-500/50 transition-all hover:scale-105 ${
-          isOpen ? "hidden" : "flex"
-        }`}
-        aria-label="Open Chat"
-      >
-        <MessageSquare size={24} />
-      </motion.button>
+      <div className={`fixed bottom-6 right-6 md:bottom-8 md:right-8 z-50 ${isOpen ? "hidden" : "flex"} flex-col items-end gap-3`}>
+        {/* Tooltip */}
+        <motion.div
+          initial={{ opacity: 0, y: 10, scale: 0.8 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ delay: 2, duration: 0.5, type: "spring" }}
+          className="bg-white text-black px-4 py-2.5 rounded-2xl rounded-br-sm shadow-xl shadow-indigo-500/20 text-xs font-bold flex items-center gap-2"
+        >
+          <span className="relative flex h-2.5 w-2.5">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+          </span>
+          Chat with AI!
+        </motion.div>
+
+        {/* Button Wrapper */}
+        <div className="relative group">
+          {/* Ping effect */}
+          <div className="absolute inset-0 bg-indigo-500 rounded-full animate-ping opacity-40 group-hover:opacity-60 duration-1000" />
+          <div className="absolute -inset-2 bg-gradient-to-r from-indigo-500 to-violet-500 rounded-full blur-md opacity-50 animate-pulse" />
+          
+          <motion.button
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            transition={{ delay: 1, type: "spring", stiffness: 200, damping: 20 }}
+            onClick={() => setIsOpen(true)}
+            className="relative p-4 rounded-full bg-gradient-to-r from-indigo-600 via-violet-600 to-indigo-600 text-white shadow-xl shadow-indigo-500/40 border border-white/20 bg-[length:200%_auto] animate-gradient"
+            aria-label="Open Chat"
+          >
+            <Bot size={26} className="drop-shadow-lg" />
+          </motion.button>
+        </div>
+      </div>
 
       {/* Chat Window */}
       <AnimatePresence>
