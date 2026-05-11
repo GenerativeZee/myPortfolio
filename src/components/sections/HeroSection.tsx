@@ -68,7 +68,7 @@ export default function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden pt-28 pb-12"
+      className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden pt-20 pb-12"
       onMouseMove={handleMouseMove}
     >
       {/* Background Effects */}
