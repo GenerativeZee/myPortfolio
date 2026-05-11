@@ -118,7 +118,7 @@ export default function Navbar() {
               <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-indigo-500 via-violet-500 to-cyan-500 flex items-center justify-center group-hover:shadow-lg group-hover:shadow-indigo-500/20 transition-shadow">
                 <span className="text-white font-bold text-sm">Z</span>
               </div>
-              <span className="text-white font-semibold text-sm tracking-wide hidden sm:block">
+              <span className="text-white font-semibold text-sm tracking-wide">
                 MD ZAID
               </span>
             </button>

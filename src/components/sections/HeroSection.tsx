@@ -229,7 +229,7 @@ export default function HeroSection() {
           >
             <button
               onClick={scrollToProjects}
-              className="magnetic-btn group relative px-7 py-3.5 text-sm font-medium text-white bg-gradient-to-r from-indigo-600 to-violet-600 rounded-xl hover:from-indigo-500 hover:to-violet-500 transition-all shadow-lg shadow-indigo-500/25 hover:shadow-indigo-500/40"
+              className="magnetic-btn group inline-flex items-center justify-center relative px-7 py-3.5 text-sm font-medium text-white bg-gradient-to-r from-indigo-600 to-violet-600 rounded-xl hover:from-indigo-500 hover:to-violet-500 transition-all shadow-lg shadow-indigo-500/25 hover:shadow-indigo-500/40"
             >
               <span className="flex items-center gap-2">
                 View Projects
