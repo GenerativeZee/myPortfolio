@@ -2,7 +2,7 @@
 
 import SectionHeading from "@/components/SectionHeading";
 import { FadeInUp } from "@/components/animations";
-import { BookOpen } from "lucide-react";
+import { BookOpen, ExternalLink } from "lucide-react";
 
 export default function PublicationsSection() {
   return (
@@ -48,7 +48,7 @@ export default function PublicationsSection() {
                       2023 — a premier conference for networking and
                       telecommunications research.
                     </p>
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center flex-wrap gap-3 mt-5 pt-5 border-t border-white/[0.04]">
                       <span className="text-xs text-zinc-500">
                         IEEE ANTS 2023
                       </span>
@@ -56,6 +56,15 @@ export default function PublicationsSection() {
                       <span className="text-xs text-zinc-500">
                         Conference Paper
                       </span>
+                      <span className="text-zinc-700">·</span>
+                      <a 
+                        href="https://doi.org/10.1109/ANTS59832.2023.10469411" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-1 text-xs font-medium text-violet-400 hover:text-violet-300 transition-colors"
+                      >
+                        View Paper <ExternalLink size={12} />
+                      </a>
                     </div>
                   </div>
                 </div>

@@ -29,7 +29,7 @@ EDUCATION:
 - B.Tech in Computer Science and Engineering, Graphic Era Hill University (2020-2024), CGPA: 8.4/10.
 
 PUBLICATIONS:
-- IEEE ANTS 2023: "On Maximizing the Channel Gain for an IRS-aided Indoor VLC System with Blockages"
+- IEEE ANTS 2023: "On Maximizing the Channel Gain for an IRS-aided Indoor VLC System with Blockages" (DOI: https://doi.org/10.1109/ANTS59832.2023.10469411)
 
 Tone: Professional, helpful, enthusiastic, tech-savvy. Keep responses relatively short (1-3 paragraphs max) as this is a chat interface.`;
 
