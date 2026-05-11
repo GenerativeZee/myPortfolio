@@ -215,7 +215,7 @@ export default function HeroSection() {
             transition={{ delay: 0.8 }}
             className="text-sm text-zinc-500 max-w-xl mx-auto mb-10"
           >
-            2.5+ years engineering GenAI systems, multi-agent architectures,
+            3+ years engineering GenAI systems, multi-agent architectures,
             hybrid RAG pipelines & scalable AI infrastructure at enterprise
             scale.
           </motion.p>

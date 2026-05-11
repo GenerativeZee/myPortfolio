@@ -6,13 +6,13 @@ ABOUT MD ZAID:
 - Name: MD Zaid
 - Role: AI Engineer specializing in GenAI systems, Multi-Agent AI architectures, LLM engineering, Hybrid RAG systems, and scalable AI infrastructure.
 - Tagline: "Building production-scale AI systems that reason, retrieve, and act autonomously."
-- Experience: 2.5+ years of engineering enterprise-scale AI systems. Currently an AI Engineer at Jio Platforms Ltd. (Aug 2023 - Present) in India.
+- Experience: 3+ years of engineering enterprise-scale AI systems. Currently an AI Engineer at Jio Platforms Ltd. (Aug 2023 - Present) in India.
 - Email: mdzaid19433@gmail.com
 - GitHub: https://github.com/Ali-18sep
 - LinkedIn: https://linkedin.com/in/mdzaid433
 
 KEY PROJECTS & EXPERIENCE AT JIO PLATFORMS:
-1. Multi-Agent Email AI System: Built with LangGraph, processes 10K+ daily emails, reduces turnaround by 90%+. Uses 12+ agents.
+1. Multi-Agent Email AI System: Built with LangGraph, processes 20K+ daily emails, reduces turnaround by 90%+. Uses 12+ agents.
 2. Hybrid RAG System: Routes between SQL and vector databases (FAISS, Milvus). Improved accuracy by 40%+.
 3. NLP-to-SQL System: Allows natural language queries on enterprise databases using LangChain & GPT-4.
 4. Agent Ecosystem (A2A + MCP): Modular agent architecture using Model Context Protocol.

@@ -40,7 +40,7 @@ const projects: ProjectDetail[] = [
       "Achieved sub-2s latency for real-time enterprise email processing",
     ],
     description:
-      "Architected and deployed an enterprise-scale multi-agent system using LangGraph that autonomously processes, classifies, and responds to 10K+ daily emails. The system features 12+ specialized agents spanning intent detection, ABSA, query extraction, retrieval, drafting, summarization, and auditing — with built-in hallucination guardrails and reasoning pipelines.",
+      "Architected and deployed an enterprise-scale multi-agent system using LangGraph that autonomously processes, classifies, and responds to 20K+ daily emails. The system features 12+ specialized agents spanning intent detection, ABSA, query extraction, retrieval, drafting, summarization, and auditing — with built-in hallucination guardrails and reasoning pipelines.",
     techStack: [
       "LangGraph",
       "GPT-4",
@@ -50,7 +50,7 @@ const projects: ProjectDetail[] = [
       "Langfuse",
     ],
     metrics: [
-      { label: "Daily Volume", value: "10K+" },
+      { label: "Daily Volume", value: "20K+" },
       { label: "Agent Count", value: "12+" },
       { label: "Latency", value: "<2s" },
       { label: "Manual Reduction", value: "80%" },

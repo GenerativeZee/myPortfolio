@@ -48,7 +48,7 @@ const projects: Project[] = [
     title: "Multi-Agent Email AI System",
     subtitle: "Enterprise AI Orchestration Platform",
     description:
-      "Autonomous multi-agent system processing 10K+ daily emails through LangGraph orchestration with 12+ specialized AI agents, delivering 90%+ turnaround reduction.",
+      "Autonomous multi-agent system processing 20K+ daily emails through LangGraph orchestration with 12+ specialized AI agents, delivering 90%+ turnaround reduction.",
     icon: Bot,
     color: "indigo",
     featured: true,
@@ -66,7 +66,7 @@ const projects: Project[] = [
       solution:
         "Designed a LangGraph-powered multi-agent orchestration system with 12+ specialized agents spanning intent detection, aspect-based sentiment analysis, query extraction, retrieval, drafting, summarization, and auditing — with built-in hallucination guardrails.",
       highlights: [
-        "10K+ emails processed daily with sub-2s latency",
+        "20K+ emails processed daily with sub-2s latency",
         "12+ specialized agents with autonomous reasoning",
         "90%+ reduction in turnaround time",
         "70-80% reduction in manual intervention",

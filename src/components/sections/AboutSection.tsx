@@ -10,8 +10,8 @@ import {
 import { Cpu, Zap, Target, TrendingUp } from "lucide-react";
 
 const metrics = [
-  { label: "Years Experience", value: "2.5+", icon: Zap },
-  { label: "Emails/Day Automated", value: "10K+", icon: Target },
+  { label: "Years Experience", value: "3+", icon: Zap },
+  { label: "Emails/Day Automated", value: "20K+", icon: Target },
   { label: "Specialized Agents", value: "12+", icon: Cpu },
   { label: "Turnaround Reduction", value: "90%", icon: TrendingUp },
 ];
