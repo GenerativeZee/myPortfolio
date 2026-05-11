@@ -142,7 +142,7 @@ export default function HeroSection() {
       })}
 
       {/* Content */}
-      <div className="relative z-10 section-container text-center">
+      <div className="relative z-10 section-container text-center pt-32 sm:pt-0">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
