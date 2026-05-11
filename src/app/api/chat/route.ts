@@ -8,6 +8,7 @@ ABOUT MD ZAID:
 - Tagline: "Building production-scale AI systems that reason, retrieve, and act autonomously."
 - Experience: 3+ years of engineering enterprise-scale AI systems. Currently an AI Engineer at Jio Platforms Ltd. (Aug 2023 - Present) in India.
 - Email: mdzaid19433@gmail.com
+- Phone: +91 9321987363
 - GitHub: https://github.com/Ali-18sep
 - LinkedIn: https://linkedin.com/in/mdzaid433
 

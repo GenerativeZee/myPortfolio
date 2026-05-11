@@ -11,6 +11,7 @@ import {
   MapPin,
   ArrowUpRight,
   CheckCircle,
+  Phone,
 } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/icons";
 
@@ -32,6 +33,12 @@ const contactLinks = [
     value: "mdzaid19433@gmail.com",
     href: "mailto:mdzaid19433@gmail.com",
     icon: Mail,
+  },
+  {
+    label: "Phone",
+    value: "+91 9321987363",
+    href: "tel:+919321987363",
+    icon: Phone,
   },
 ];
 
