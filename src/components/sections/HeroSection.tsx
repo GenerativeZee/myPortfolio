@@ -68,7 +68,7 @@ export default function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden pt-28 pb-12"
       onMouseMove={handleMouseMove}
     >
       {/* Background Effects */}
@@ -142,7 +142,7 @@ export default function HeroSection() {
       })}
 
       {/* Content */}
-      <div className="relative z-10 section-container text-center pt-32 sm:pt-0">
+      <div className="relative z-10 section-container text-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
