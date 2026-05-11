@@ -53,7 +53,7 @@ export async function POST(req: Request) {
         Authorization: `Bearer ${process.env.GEMINI_API_KEY}`,
       },
       body: JSON.stringify({
-        model: "gemini-1.5-flash", // Extremely fast, incredibly smart, and generous free tier
+        model: "gemini-2.5-flash", // Extremely fast, incredibly smart, and generous free tier
         messages: [{ role: "system", content: SYSTEM_PROMPT }, ...messages],
         temperature: 0.7,
         max_tokens: 500,
