@@ -11,9 +11,7 @@ import {
 import {
   Bot,
   Database,
-  MessageSquare,
-  HeartPulse,
-  CalendarClock,
+  FileText,
   ExternalLink,
   X,
   Star,
@@ -45,144 +43,86 @@ interface Project {
 const projects: Project[] = [
   {
     id: "email-ai",
-    title: "Multi-Agent Email AI System",
-    subtitle: "Enterprise AI Orchestration Platform",
+    title: "Email Copilot & Auditor Agent",
+    subtitle: "Jio KM Portal — Multi-Agent LangGraph System",
     description:
-      "Autonomous multi-agent system processing 20K+ daily emails through LangGraph orchestration with 12+ specialized AI agents, delivering 90%+ turnaround reduction.",
+      "Multi-node LangGraph agent harness resolving 10,000+ emails/day across 11 business portals, with an independent Auditor Agent gating every draft against 9 guardrails.",
     icon: Bot,
     color: "indigo",
     featured: true,
     tags: [
       "LangGraph",
-      "Multi-Agent",
-      "GPT-4",
-      "FastAPI",
-      "FAISS",
-      "Production",
+      "MCP",
+      "DSPy",
+      "Claude Sonnet",
+      "RAG",
+      "Databricks",
     ],
     details: {
       problem:
-        "Enterprise email operations required manual processing of 10,000+ daily emails, creating massive bottlenecks and inconsistent response quality across departments.",
+        "10,000+ customer emails a day across 11 business portals were triaged and drafted manually, with no automated check on accuracy, tone, or PII exposure.",
       solution:
-        "Designed a LangGraph-powered multi-agent orchestration system with 12+ specialized agents spanning intent detection, aspect-based sentiment analysis, query extraction, retrieval, drafting, summarization, and auditing — with built-in hallucination guardrails.",
+        "Architected the agent harness as a multi-node LangGraph conditional state graph — typed graph state, conditional planning and routing, MCP tool calls into enterprise systems, retry/fallback branches, and a 0-10 confidence score gating autonomous send vs. human escalation. Built the drafting pipeline with RAG-grounded drafting via DSPy ChainOfThought and PII masking enforced as a hard policy guardrail, plus an Auditor Agent running a max-3-attempt HITL revision loop.",
       highlights: [
-        "20K+ emails processed daily with sub-2s latency",
-        "12+ specialized agents with autonomous reasoning",
-        "90%+ reduction in turnaround time",
-        "70-80% reduction in manual intervention",
-        "Built-in hallucination detection and guardrails",
-        "Self-healing agent workflows with fallback logic",
+        "10,000+ emails/day resolved autonomously across all 11 portals",
+        "95% reduction in manual handling effort",
+        "Zero non-compliant drafts released to production",
+        "Auditor Agent scores every draft against 9 guardrails (≥80% to pass)",
+        "T2R fast path cuts latency and token cost",
+        "7.8M requests/day across the platform",
       ],
     },
   },
   {
-    id: "hybrid-rag",
-    title: "Hybrid RAG Platform",
-    subtitle: "Dual-Retrieval Intelligence System",
+    id: "reims",
+    title: "REIMS — Enterprise Plant SOP Agent",
+    subtitle: "Azure Databricks · Multi-Site RAG Deployment",
     description:
-      "Next-generation retrieval system combining vector search with SQL execution, achieving 40%+ accuracy improvements through intelligent query routing.",
+      "Citable RAG agent over thousands of pages of structured and unstructured plant SOPs, with dual memory, site-isolated retrieval, and a self-improving eval harness.",
     icon: Database,
     color: "cyan",
     tags: [
-      "RAG",
-      "FAISS",
-      "Milvus",
-      "SQL",
-      "LangChain",
-      "Azure AI Search",
+      "Azure Databricks",
+      "Databricks Vector Search",
+      "Lakebase",
+      "MLflow",
+      "DSPy",
+      "Claude Sonnet",
     ],
     details: {
       problem:
-        "Traditional RAG systems failed on structured data queries, while SQL-only approaches missed semantic context in unstructured documents like legal contracts.",
+        "Plant teams needed citable answers from thousands of pages of structured and unstructured SOPs across multiple sites, where any cross-site data exposure is a compliance failure.",
       solution:
-        "Built a dual-retrieval architecture with intelligent query routing that analyzes incoming questions to determine optimal retrieval paths — semantic vector search for unstructured content, SQL execution for structured data, or hybrid combinations for complex queries.",
+        "Drove the build from solution design through UAT sign-off and production deployment. Implemented dual memory — short-term per-thread state plus long-term user memory persisted in Lakebase — and enforced site isolation inside the retrieval layer, filtering every query by the authenticated user's authorized sites. Built a self-improving eval harness: thumbs up/down → MLflow traces → 500-example SME-reviewed eval set → automated DSPy prompt optimization → winning prompt promoted via MLflow versioning, no redeploy.",
+      highlights: [
+        "p95 latency under 4s",
+        "Groundedness ≥0.85, citation completeness ≥0.95",
+        "Zero cross-site data leaks in production",
+        "Dual short-term / long-term agent memory via Lakebase",
+        "Self-improving eval harness with SME-aligned LLM judges",
+      ],
+    },
+  },
+  {
+    id: "vendor-agreement",
+    title: "Vendor Agreement Agent",
+    subtitle: "Reliance Life Sciences — Hybrid Retrieval",
+    description:
+      "Hybrid-retrieval agent for internal legal teams that routes queries between SQL over structured contract data and dense retrieval over agreement text.",
+    icon: FileText,
+    color: "violet",
+    tags: ["LangChain", "LangGraph", "SQL", "Dense Retrieval", "Claude"],
+    details: {
+      problem:
+        "Vendor-agreement queries required cross-referencing structured contract metadata in databases against clause text inside the agreements; neither SQL nor dense retrieval alone covered both.",
+      solution:
+        "Built a hybrid-retrieval agent that classifies each query at runtime and routes it between SQL over structured contract data and dense document retrieval. Led extraction and modelling of contract key-value data, letting the agent fuse structured lookups with unstructured clause retrieval into one grounded answer.",
       highlights: [
         "40%+ improvement in answer accuracy",
-        "30% reduction in hallucination rate",
-        "Intelligent query routing between SQL and vector stores",
-        "Legal document extraction with semantic search",
-        "Dynamic evaluation frameworks for continuous improvement",
-      ],
-    },
-  },
-  {
-    id: "nlp-sql",
-    title: "NLP-to-SQL Engine",
-    subtitle: "Natural Language Data Interface",
-    description:
-      "Intelligent system translating natural language into optimized SQL queries through structured reasoning, democratizing data access for enterprise teams.",
-    icon: MessageSquare,
-    color: "violet",
-    tags: ["NLP", "SQL", "GPT-4", "DSPy", "FastAPI", "LangChain"],
-    details: {
-      problem:
-        "Non-technical teams were bottlenecked by SQL expertise requirements, creating dependency on data engineers for every analytical query.",
-      solution:
-        "Engineered a structured reasoning pipeline that translates natural language questions into optimized SQL queries, handling complex multi-table joins, aggregations, and conditional logic with explainable query plans.",
-      highlights: [
-        "Natural language to complex SQL translation",
-        "Multi-table join and aggregation support",
-        "Explainable query plan generation",
-        "Unified QA pipeline for enterprise analytics",
-        "Reduced SQL dependency across business teams",
-      ],
-    },
-  },
-  {
-    id: "cancer-detection",
-    title: "Cancer Detection System",
-    subtitle: "Healthcare AI Classification Pipeline",
-    description:
-      "Machine learning classification pipeline for cancer detection achieving 90%+ accuracy, demonstrating AI application in high-stakes healthcare diagnostics.",
-    icon: HeartPulse,
-    color: "rose",
-    tags: [
-      "PyTorch",
-      "Scikit-learn",
-      "Deep Learning",
-      "Medical AI",
-      "Classification",
-    ],
-    details: {
-      problem:
-        "Early cancer detection requires high-accuracy classification systems that can assist medical professionals in making faster, more reliable diagnoses.",
-      solution:
-        "Built a comprehensive ML classification pipeline incorporating feature engineering, model selection, hyperparameter optimization, and rigorous evaluation to achieve healthcare-grade accuracy.",
-      highlights: [
-        "90%+ classification accuracy",
-        "Comprehensive ML pipeline architecture",
-        "Feature engineering for medical data",
-        "Healthcare AI compliance considerations",
-        "Model interpretability for clinical use",
-      ],
-    },
-  },
-  {
-    id: "event-mgmt",
-    title: "Event Management Platform",
-    subtitle: "Intelligent Scheduling System",
-    description:
-      "Scalable event management system with intelligent scheduling automation, reducing scheduling conflicts by 80% through optimized algorithms.",
-    icon: CalendarClock,
-    color: "emerald",
-    tags: [
-      "Python",
-      "FastAPI",
-      "Scheduling",
-      "Optimization",
-      "Scalable Architecture",
-    ],
-    details: {
-      problem:
-        "Manual event scheduling across multiple venues and participants created frequent conflicts, inefficiencies, and poor resource utilization.",
-      solution:
-        "Designed an intelligent scheduling system with conflict detection, resource optimization, and automated resolution algorithms built on a scalable architecture.",
-      highlights: [
-        "80% reduction in scheduling conflicts",
-        "Automated conflict detection and resolution",
-        "Scalable architecture for concurrent events",
-        "Resource optimization across venues",
-        "Real-time scheduling updates",
+        "Reduced query latency for legal teams",
+        "Replaced the manual cross-referencing workflow",
+        "Runtime query classification between SQL and dense retrieval",
+        "Structured contract key-value extraction and modelling",
       ],
     },
   },
@@ -219,20 +159,6 @@ const projectColorStyles: Record<
     dot: "bg-violet-500",
     glow: "shadow-violet-500/20",
   },
-  rose: {
-    gradient: "from-rose-600 to-pink-600",
-    badge: "bg-rose-500/10 text-rose-300 border-rose-500/20",
-    tag: "bg-rose-500/8 border-rose-500/15 text-rose-300",
-    dot: "bg-rose-500",
-    glow: "shadow-rose-500/20",
-  },
-  emerald: {
-    gradient: "from-emerald-600 to-teal-600",
-    badge: "bg-emerald-500/10 text-emerald-300 border-emerald-500/20",
-    tag: "bg-emerald-500/8 border-emerald-500/15 text-emerald-300",
-    dot: "bg-emerald-500",
-    glow: "shadow-emerald-500/20",
-  },
 };
 
 export default function ProjectsSection() {
@@ -251,7 +177,7 @@ export default function ProjectsSection() {
           <SectionHeading
             label="Projects"
             title="Systems That Ship"
-            description="Production-grade AI systems engineered for enterprise scale — from multi-agent orchestration to healthcare diagnostics."
+            description="Production-grade AI agents engineered at Jio Platforms (Reliance Industries) — from multi-agent orchestration to enterprise RAG and hybrid retrieval."
           />
         </FadeInUp>
 

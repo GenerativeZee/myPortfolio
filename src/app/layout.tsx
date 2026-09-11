@@ -13,12 +13,13 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "MD Zaid — AI Engineer | GenAI Systems & Multi-Agent Architectures",
+  title: "MD Zaid — Agentic AI Engineer | Agent Harness & Orchestration",
   description:
-    "Portfolio of MD Zaid — AI Engineer specializing in production-scale GenAI systems, Multi-Agent AI architectures, LLM engineering, Hybrid RAG systems, and scalable AI infrastructure.",
+    "Portfolio of MD Zaid — Agentic AI Engineer specializing in agent harness & orchestration, tool calling, planning & memory, RAG / vector retrieval, and agent evals.",
   keywords: [
-    "AI Engineer",
-    "LLM Engineer",
+    "Agentic AI Engineer",
+    "Agent Orchestration",
+    "LangGraph",
     "GenAI",
     "Multi-Agent AI",
     "RAG Systems",
@@ -28,14 +29,14 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "MD Zaid" }],
   openGraph: {
-    title: "MD Zaid — AI Engineer",
+    title: "MD Zaid — Agentic AI Engineer",
     description:
       "Building production-scale AI systems that reason, retrieve, and act autonomously.",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "MD Zaid — AI Engineer",
+    title: "MD Zaid — Agentic AI Engineer",
     description:
       "Building production-scale AI systems that reason, retrieve, and act autonomously.",
   },

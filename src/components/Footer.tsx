@@ -19,7 +19,7 @@ export default function Footer() {
             </div>
             <div>
               <p className="text-white text-sm font-medium">MD Zaid</p>
-              <p className="text-zinc-600 text-xs">AI Engineer</p>
+              <p className="text-zinc-600 text-xs">Agentic AI Engineer</p>
             </div>
           </div>
 

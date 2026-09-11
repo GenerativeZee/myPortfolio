@@ -17,12 +17,12 @@ import {
 import { GithubIcon, LinkedinIcon } from "@/components/icons";
 
 const roles = [
-  "AI Engineer",
-  "LLM Engineer",
+  "Agentic AI Engineer",
+  "Agent Harness & Orchestration",
+  "Multi-Agent Systems Engineer",
+  "RAG / Vector Retrieval Engineer",
+  "Agent Evals & Observability",
   "GenAI Systems Architect",
-  "Multi-Agent AI Developer",
-  "RAG Systems Engineer",
-  "AI Infrastructure Engineer",
 ];
 
 const floatingIcons = [
@@ -215,9 +215,9 @@ export default function HeroSection() {
             transition={{ delay: 0.8 }}
             className="text-sm text-zinc-500 max-w-xl mx-auto mb-10"
           >
-            3+ years engineering GenAI systems, multi-agent architectures,
-            hybrid RAG pipelines & scalable AI infrastructure at enterprise
-            scale.
+            3+ years at Jio Platforms (Reliance Industries) engineering
+            production-grade AI agents, multi-agent orchestration & RAG
+            architectures with LangGraph, Claude, and Azure Databricks.
           </motion.p>
 
           {/* CTA Buttons */}

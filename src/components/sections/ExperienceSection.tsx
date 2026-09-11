@@ -11,8 +11,7 @@ import {
   ChevronDown,
   Bot,
   Database,
-  MessageSquare,
-  Blocks,
+  FileText,
   ArrowRight,
 } from "lucide-react";
 
@@ -30,107 +29,80 @@ interface ProjectDetail {
 const projects: ProjectDetail[] = [
   {
     id: "email-ai",
-    title: "Multi-Agent Email AI System",
+    title: "Email Copilot & Auditor Agent | Jio KM Portal",
     icon: Bot,
     color: "indigo",
     impact: [
-      "Processes 10,000+ emails daily with autonomous AI orchestration",
-      "Reduced turnaround time by 90%+ through intelligent pipeline automation",
-      "Eliminated 70–80% of manual intervention with self-healing agent workflows",
-      "Achieved sub-2s latency for real-time enterprise email processing",
+      "10,000+ emails/day resolved autonomously across all 11 business portals",
+      "95% reduction in manual handling effort",
+      "Zero non-compliant drafts released to production",
+      "T2R fast path cuts latency and token cost by drafting from pre-fetched tool responses",
     ],
     description:
-      "Architected and deployed an enterprise-scale multi-agent system using LangGraph that autonomously processes, classifies, and responds to 20K+ daily emails. The system features 12+ specialized agents spanning intent detection, ABSA, query extraction, retrieval, drafting, summarization, and auditing — with built-in hallucination guardrails and reasoning pipelines.",
+      "Architected the agent harness as a multi-node LangGraph conditional state graph: typed graph state, conditional planning and routing, MCP tool calls into enterprise systems, retry/fallback branches, and a 0-10 confidence score gating autonomous send vs. human escalation. Built the drafting pipeline (queue classification, intent detection, ABSA sentiment, RAG-grounded drafting via DSPy ChainOfThought) with PII masking enforced as a hard policy guardrail, plus an independent Auditor Agent scoring every draft against 9 guardrails with a max-3-attempt HITL revision loop.",
     techStack: [
       "LangGraph",
-      "GPT-4",
+      "MCP",
+      "DSPy",
+      "Claude Sonnet",
+      "RAG",
+      "Databricks",
       "FastAPI",
-      "Azure",
-      "FAISS",
-      "Langfuse",
     ],
     metrics: [
-      { label: "Daily Volume", value: "20K+" },
-      { label: "Agent Count", value: "12+" },
-      { label: "Latency", value: "<2s" },
-      { label: "Manual Reduction", value: "80%" },
+      { label: "Daily Volume", value: "10K+" },
+      { label: "Business Portals", value: "11" },
+      { label: "Manual Reduction", value: "95%" },
+      { label: "Requests/Day", value: "7.8M" },
     ],
   },
   {
-    id: "hybrid-rag",
-    title: "Hybrid RAG System",
+    id: "reims",
+    title: "REIMS | Enterprise Plant SOP Agent",
     icon: Database,
     color: "cyan",
     impact: [
-      "Improved answer accuracy by 40%+ through dual retrieval architecture",
-      "Reduced hallucination rate by 30% with structured validation layers",
-      "Intelligent query routing between SQL and vector retrieval engines",
-      "Optimized legal document extraction with semantic search pipelines",
+      "p95 latency under 4s with citable, groundedness ≥0.85 answers",
+      "Citation completeness ≥0.95 across structured and unstructured SOPs",
+      "Zero cross-site data leaks in production",
+      "Self-improving eval harness promotes winning prompts with no redeploy",
     ],
     description:
-      "Designed a next-generation hybrid retrieval system that intelligently routes queries between structured SQL databases and vector embeddings. The system uses dynamic query analysis to determine optimal retrieval paths, incorporating semantic search over legal documents with FAISS and Milvus for high-precision enterprise analytics.",
+      "Drove the build from solution design through UAT sign-off and production deployment across multi-site plant operations. Implemented dual memory — short-term per-thread state plus long-term user memory persisted in Lakebase — exposed as read/write/delete tools the agent invokes autonomously. Enforced site isolation inside the retrieval layer, filtering every query by the authenticated user's authorized sites. Built a self-improving eval harness: thumbs up/down → MLflow traces → 500-example SME-reviewed eval set → automated DSPy prompt optimization scored by SME-aligned LLM judges → winning prompt promoted via MLflow versioning.",
     techStack: [
-      "LangChain",
-      "FAISS",
-      "Milvus",
-      "SQL",
-      "Azure AI Search",
-      "Python",
+      "Azure Databricks",
+      "Databricks Vector Search",
+      "Lakebase",
+      "MLflow",
+      "DSPy",
+      "Claude Sonnet",
     ],
     metrics: [
-      { label: "Accuracy Gain", value: "40%+" },
-      { label: "Hallucination Cut", value: "30%" },
-      { label: "Retrieval Paths", value: "Dual" },
-      { label: "Domain", value: "Legal" },
+      { label: "p95 Latency", value: "<4s" },
+      { label: "Groundedness", value: "≥0.85" },
+      { label: "Citation Complete", value: "≥0.95" },
+      { label: "Cross-site Leaks", value: "Zero" },
     ],
   },
   {
-    id: "nlp-sql",
-    title: "NLP-to-SQL System",
-    icon: MessageSquare,
+    id: "vendor-agreement",
+    title: "Vendor Agreement Agent | Reliance Life Sciences",
+    icon: FileText,
     color: "violet",
     impact: [
-      "Enabled natural language querying for enterprise databases",
-      "Built structured reasoning engine for complex multi-table SQL generation",
-      "Unified QA pipeline reducing dependency on manual SQL expertise",
-      "Democratized data access across non-technical business teams",
+      "40%+ improvement in answer accuracy over manual cross-referencing",
+      "Reduced query latency for internal legal teams",
+      "Replaced manual cross-referencing workflow for vendor contracts",
+      "Fused structured lookups with unstructured clause retrieval",
     ],
     description:
-      "Engineered an intelligent NLP-to-SQL engine that translates natural language questions into optimized SQL queries through structured reasoning. The system handles complex multi-table joins, aggregations, and conditional logic while providing explainable query plans for enterprise analytics use cases.",
-    techStack: ["LangChain", "GPT-4", "SQL", "FastAPI", "Python", "DSPy"],
+      "Built a hybrid-retrieval agent that classifies each query at runtime and routes it between SQL over structured contract data and dense document retrieval, since neither approach alone covered both structured contract metadata and clause text inside agreements. Led extraction and modelling of contract key-value data, letting the agent fuse structured lookups with unstructured clause retrieval into one grounded answer for internal legal teams.",
+    techStack: ["LangChain", "LangGraph", "SQL", "Dense Retrieval", "Claude"],
     metrics: [
-      { label: "Query Types", value: "Multi-table" },
-      { label: "Reasoning", value: "Structured" },
-      { label: "Pipeline", value: "Unified QA" },
-      { label: "Users", value: "Enterprise" },
-    ],
-  },
-  {
-    id: "agent-ecosystem",
-    title: "Agent Ecosystem (A2A + MCP)",
-    icon: Blocks,
-    color: "emerald",
-    impact: [
-      "Designed modular agent architecture with standardized MCP interfaces",
-      "Implemented A2A protocols for seamless inter-agent coordination",
-      "Created reusable tool interfaces for enterprise AI workflows",
-      "Built extensible architecture supporting plug-and-play agent deployment",
-    ],
-    description:
-      "Pioneered a modular AI agent ecosystem leveraging Agent-to-Agent (A2A) protocols and Model Context Protocol (MCP) for standardized tool interfaces. This architecture enables seamless agent coordination, reusable components, and extensible deployment patterns for enterprise AI systems.",
-    techStack: [
-      "MCP",
-      "A2A Protocol",
-      "LangGraph",
-      "FastAPI",
-      "Python",
-      "Docker",
-    ],
-    metrics: [
-      { label: "Architecture", value: "Modular" },
-      { label: "Protocol", value: "A2A + MCP" },
-      { label: "Integration", value: "Plug & Play" },
-      { label: "Scale", value: "Enterprise" },
+      { label: "Accuracy Gain", value: "40%+" },
+      { label: "Retrieval Paths", value: "Dual" },
+      { label: "Domain", value: "Legal" },
+      { label: "Users", value: "Internal Teams" },
     ],
   },
 ];
@@ -156,12 +128,6 @@ const colorStyles: Record<
     icon: "text-violet-400",
     border: "border-violet-500/20",
     tag: "bg-violet-500/8 border-violet-500/15 text-violet-300",
-  },
-  emerald: {
-    badge: "bg-emerald-500/10 text-emerald-300 border-emerald-500/20",
-    icon: "text-emerald-400",
-    border: "border-emerald-500/20",
-    tag: "bg-emerald-500/8 border-emerald-500/15 text-emerald-300",
   },
 };
 
@@ -192,7 +158,7 @@ export default function ExperienceSection() {
                     Jio Platforms Ltd.
                   </h3>
                   <p className="text-indigo-300 font-medium text-sm">
-                    AI Engineer — GenAI Systems
+                    AI / Agentic AI Engineer
                   </p>
                 </div>
               </div>
@@ -203,7 +169,7 @@ export default function ExperienceSection() {
                 </span>
                 <span className="flex items-center gap-1.5">
                   <MapPin size={12} />
-                  India
+                  Mumbai / Gurgaon, India
                 </span>
               </div>
             </div>

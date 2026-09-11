@@ -11,31 +11,31 @@ import { Cpu, Zap, Target, TrendingUp } from "lucide-react";
 
 const metrics = [
   { label: "Years Experience", value: "3+", icon: Zap },
-  { label: "Emails/Day Automated", value: "20K+", icon: Target },
-  { label: "Specialized Agents", value: "12+", icon: Cpu },
-  { label: "Turnaround Reduction", value: "90%", icon: TrendingUp },
+  { label: "Emails/Day Automated", value: "10K+", icon: Target },
+  { label: "Business Portals", value: "11", icon: Cpu },
+  { label: "Manual Effort Reduction", value: "95%", icon: TrendingUp },
 ];
 
 const highlights = [
   {
     title: "Multi-Agent Orchestration",
     description:
-      "Architecting autonomous AI ecosystems with LangGraph, coordinating 12+ specialized agents for enterprise-scale email intelligence systems.",
+      "Architecting multi-node LangGraph state graphs with conditional routing, MCP tool calls, and an independent Auditor Agent that gates every output against 9 guardrails.",
   },
   {
-    title: "Hybrid RAG Engineering",
+    title: "Agent Harness & Evals",
     description:
-      "Pioneering dual-retrieval systems combining vector search with structured SQL execution, achieving 40%+ accuracy improvements across legal and enterprise domains.",
+      "Building self-improving eval harnesses on MLflow and DSPy — SME-reviewed eval sets, LLM-as-Judge scoring, and automated prompt optimization with zero-redeploy promotion.",
+  },
+  {
+    title: "Hybrid RAG & Retrieval",
+    description:
+      "Engineering dual-retrieval systems that route between SQL and Databricks Vector Search, with site-isolated retrieval and dual short/long-term agent memory.",
   },
   {
     title: "Production AI Infrastructure",
     description:
-      "Deploying and scaling GenAI pipelines on Azure Databricks with Kubeflow orchestration, delivering sub-2s latency on production workloads.",
-  },
-  {
-    title: "Intelligent System Design",
-    description:
-      "Building NLP-to-SQL engines, MCP-powered tool interfaces, and A2A protocol integrations that transform how enterprises interact with data.",
+      "Owning AI systems end-to-end on Azure Databricks — from tool design and retrieval to guardrails, memory, and production monitoring at enterprise scale.",
   },
 ];
 
@@ -56,28 +56,29 @@ export default function AboutSection() {
           <div className="max-w-3xl mx-auto mb-16">
             <div className="glass rounded-2xl p-8 md:p-10">
               <p className="text-zinc-300 leading-relaxed text-base md:text-lg">
-                I&apos;m an AI Engineer focused on building production-grade
-                intelligent systems that operate at enterprise scale. My work
-                spans the full spectrum of modern AI engineering — from
-                designing multi-agent orchestration frameworks that process
-                10,000+ daily interactions, to pioneering hybrid retrieval
-                architectures that bridge structured and unstructured data
-                worlds.
+                I&apos;m an Agentic AI Engineer with 3+ years of experience at
+                Jio Platforms (Reliance Industries), specializing in
+                production-grade AI agents, multi-agent systems, and RAG
+                architectures. My work spans agent orchestration, LLM
+                evaluation, guardrails, memory, and observability — owning AI
+                systems end-to-end from design through production deployment.
               </p>
               <p className="text-zinc-400 leading-relaxed text-base md:text-lg mt-4">
                 At{" "}
                 <span className="text-indigo-400 font-medium">
                   Jio Platforms
                 </span>
-                , I engineer GenAI systems that have fundamentally transformed
-                enterprise workflows — reducing manual intervention by 70–80%
-                and achieving 90%+ turnaround improvements through autonomous
-                reasoning pipelines. I specialize in{" "}
+                , I&apos;ve architected multi-agent LangGraph systems that
+                resolve 10,000+ emails a day across 11 business portals with a
+                95% reduction in manual handling effort, and built
+                enterprise RAG agents with citable, site-isolated retrieval.
+                I work hands-on across{" "}
                 <span className="text-white/80">LangGraph</span>,{" "}
-                <span className="text-white/80">MCP architectures</span>,{" "}
-                <span className="text-white/80">A2A protocols</span>, and{" "}
-                <span className="text-white/80">scalable AI infrastructure</span>{" "}
-                on Databricks and Kubernetes.
+                <span className="text-white/80">Claude</span>,{" "}
+                <span className="text-white/80">Azure Databricks</span>,{" "}
+                <span className="text-white/80">MLflow</span>,{" "}
+                <span className="text-white/80">DSPy</span>, and{" "}
+                <span className="text-white/80">Databricks Vector Search</span>.
               </p>
             </div>
           </div>
