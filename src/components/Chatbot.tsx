@@ -2,24 +2,62 @@
 
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { MessageSquare, X, Send, Bot, User, Loader2 } from "lucide-react";
+import { X, Send, Bot, User, Loader2, Check } from "lucide-react";
 
 type Message = {
   role: "user" | "assistant";
   content: string;
 };
 
+const AGENT_TRACE_STEPS = [
+  "Understanding query",
+  "Retrieving context",
+  "Drafting response",
+  "Finalizing",
+];
+
+const SUGGESTED_PROMPTS = [
+  "What's the Email Copilot Agent?",
+  "Tell me about REIMS",
+  "What's your RAG & eval stack?",
+];
+
+function TypewriterText({ text, onDone }: { text: string; onDone: () => void }) {
+  const [shown, setShown] = useState("");
+
+  useEffect(() => {
+    let i = 0;
+    const step = Math.max(1, Math.round(text.length / 90));
+    const interval = setInterval(() => {
+      i += step;
+      setShown(text.slice(0, i));
+      if (i >= text.length) {
+        clearInterval(interval);
+        onDone();
+      }
+    }, 12);
+    return () => clearInterval(interval);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [text]);
+
+  return <>{shown}</>;
+}
+
 export default function Chatbot() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     {
       role: "assistant",
-      content: "Hi! I'm MD Zaid's AI assistant. Ask me anything about his experience, projects, or skills!",
+      content:
+        "Hi! I'm MD Zaid's AI assistant. Ask me about his experience, agent architectures, or skills!",
     },
   ]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [traceStep, setTraceStep] = useState(0);
+  const [revealingIndex, setRevealingIndex] = useState<number | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const traceIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -27,16 +65,22 @@ export default function Chatbot() {
 
   useEffect(() => {
     scrollToBottom();
-  }, [messages, isLoading]);
+  }, [messages, isLoading, traceStep]);
 
-  const handleSend = async (e?: React.FormEvent) => {
-    e?.preventDefault();
-    if (!input.trim() || isLoading) return;
+  const sendMessage = async (text: string) => {
+    if (!text.trim() || isLoading) return;
 
-    const userMessage: Message = { role: "user", content: input.trim() };
+    const userMessage: Message = { role: "user", content: text.trim() };
     setMessages((prev) => [...prev, userMessage]);
     setInput("");
     setIsLoading(true);
+    setTraceStep(0);
+
+    traceIntervalRef.current = setInterval(() => {
+      setTraceStep((prev) =>
+        prev < AGENT_TRACE_STEPS.length - 1 ? prev + 1 : prev
+      );
+    }, 550);
 
     try {
       const response = await fetch("/api/chat", {
@@ -53,7 +97,11 @@ export default function Chatbot() {
           { role: "assistant", content: `Error: ${data.error}` },
         ]);
       } else {
-        setMessages((prev) => [...prev, data]);
+        setMessages((prev) => {
+          const next = [...prev, data as Message];
+          setRevealingIndex(next.length - 1);
+          return next;
+        });
       }
     } catch {
       setMessages((prev) => [
@@ -61,8 +109,14 @@ export default function Chatbot() {
         { role: "assistant", content: "Sorry, I couldn't connect to the server." },
       ]);
     } finally {
+      if (traceIntervalRef.current) clearInterval(traceIntervalRef.current);
       setIsLoading(false);
     }
+  };
+
+  const handleSend = async (e?: React.FormEvent) => {
+    e?.preventDefault();
+    await sendMessage(input);
   };
 
   return (
@@ -161,20 +215,71 @@ export default function Chatbot() {
                         : "bg-indigo-600 text-white rounded-tr-sm"
                     }`}
                   >
-                    {msg.content}
+                    {msg.role === "assistant" && index === revealingIndex ? (
+                      <TypewriterText
+                        text={msg.content}
+                        onDone={() => setRevealingIndex(null)}
+                      />
+                    ) : (
+                      msg.content
+                    )}
                   </div>
                 </div>
               ))}
-              
+
+              {/* Suggested prompts (only shown before the first exchange) */}
+              {messages.length === 1 && !isLoading && (
+                <div className="flex flex-wrap gap-2 pl-10">
+                  {SUGGESTED_PROMPTS.map((prompt) => (
+                    <button
+                      key={prompt}
+                      onClick={() => sendMessage(prompt)}
+                      className="px-3 py-1.5 rounded-full text-[11px] font-medium text-indigo-300 bg-indigo-500/8 border border-indigo-500/20 hover:bg-indigo-500/15 hover:border-indigo-500/30 transition-all"
+                    >
+                      {prompt}
+                    </button>
+                  ))}
+                </div>
+              )}
+
               {isLoading && (
                 <div className="flex gap-3">
                   <div className="w-7 h-7 shrink-0 rounded-full bg-indigo-500/20 text-indigo-400 flex items-center justify-center">
                     <Bot size={14} />
                   </div>
-                  <div className="bg-white/[0.05] border border-white/[0.05] rounded-2xl rounded-tl-sm px-4 py-3 flex items-center gap-1">
-                    <span className="w-1.5 h-1.5 rounded-full bg-zinc-500 animate-bounce" style={{ animationDelay: "0ms" }} />
-                    <span className="w-1.5 h-1.5 rounded-full bg-zinc-500 animate-bounce" style={{ animationDelay: "150ms" }} />
-                    <span className="w-1.5 h-1.5 rounded-full bg-zinc-500 animate-bounce" style={{ animationDelay: "300ms" }} />
+                  <div className="bg-white/[0.05] border border-white/[0.05] rounded-2xl rounded-tl-sm px-4 py-3 min-w-[172px] space-y-1.5">
+                    {AGENT_TRACE_STEPS.map((step, i) => (
+                      <div key={step} className="flex items-center gap-2">
+                        <span
+                          className={`flex items-center justify-center w-3.5 h-3.5 rounded-full shrink-0 transition-colors ${
+                            i < traceStep
+                              ? "bg-emerald-500/20 text-emerald-400"
+                              : i === traceStep
+                                ? "bg-indigo-500/20 text-indigo-400"
+                                : "bg-white/[0.04] text-transparent"
+                          }`}
+                        >
+                          {i < traceStep ? (
+                            <Check size={9} />
+                          ) : (
+                            <span
+                              className={`w-1.5 h-1.5 rounded-full ${
+                                i === traceStep
+                                  ? "bg-indigo-400 animate-pulse"
+                                  : "bg-zinc-700"
+                              }`}
+                            />
+                          )}
+                        </span>
+                        <span
+                          className={`text-[11px] transition-colors ${
+                            i <= traceStep ? "text-zinc-300" : "text-zinc-600"
+                          }`}
+                        >
+                          {step}
+                        </span>
+                      </div>
+                    ))}
                   </div>
                 </div>
               )}

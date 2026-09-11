@@ -13,6 +13,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://md-zaid-portfolio.vercel.app"),
   title: "MD Zaid — Agentic AI Engineer | Agent Harness & Orchestration",
   description:
     "Portfolio of MD Zaid — Agentic AI Engineer specializing in agent harness & orchestration, tool calling, planning & memory, RAG / vector retrieval, and agent evals.",

@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import SectionHeading from "@/components/SectionHeading";
 import { FadeInUp } from "@/components/animations";
+import AgentFlow, { type FlowStep } from "@/components/AgentFlow";
 import {
   Building2,
   Calendar,
@@ -13,6 +14,7 @@ import {
   Database,
   FileText,
   ArrowRight,
+  Workflow,
 } from "lucide-react";
 
 interface ProjectDetail {
@@ -24,6 +26,7 @@ interface ProjectDetail {
   description: string;
   techStack: string[];
   metrics: { label: string; value: string }[];
+  flow: FlowStep[];
 }
 
 const projects: ProjectDetail[] = [
@@ -55,6 +58,13 @@ const projects: ProjectDetail[] = [
       { label: "Manual Reduction", value: "95%" },
       { label: "Requests/Day", value: "7.8M" },
     ],
+    flow: [
+      { label: "Classify Queue" },
+      { label: "Route (MCP Tools)" },
+      { label: "Draft (RAG + DSPy)" },
+      { label: "Audit (9 Guardrails)" },
+      { parallel: ["Autonomous Send", "Human Escalation"] },
+    ],
   },
   {
     id: "reims",
@@ -83,6 +93,12 @@ const projects: ProjectDetail[] = [
       { label: "Citation Complete", value: "≥0.95" },
       { label: "Cross-site Leaks", value: "Zero" },
     ],
+    flow: [
+      { label: "Query" },
+      { label: "Site-Isolated Retrieval" },
+      { label: "Vector Search + Memory" },
+      { label: "Grounded Answer" },
+    ],
   },
   {
     id: "vendor-agreement",
@@ -103,6 +119,12 @@ const projects: ProjectDetail[] = [
       { label: "Retrieval Paths", value: "Dual" },
       { label: "Domain", value: "Legal" },
       { label: "Users", value: "Internal Teams" },
+    ],
+    flow: [
+      { label: "Query" },
+      { label: "Runtime Classify" },
+      { parallel: ["SQL Retrieval", "Dense Retrieval"] },
+      { label: "Fuse & Answer" },
     ],
   },
 ];
@@ -245,6 +267,20 @@ export default function ExperienceSection() {
                                 </div>
                               </div>
                             ))}
+                          </div>
+
+                          {/* Agent Flow */}
+                          <div className="mb-6">
+                            <h5 className="flex items-center gap-1.5 text-xs font-medium text-zinc-500 uppercase tracking-wider mb-4">
+                              <Workflow size={12} />
+                              Agent Flow
+                            </h5>
+                            <div className="bg-white/[0.02] rounded-xl border border-white/[0.04] p-4 md:p-5">
+                              <AgentFlow
+                                steps={project.flow}
+                                color={project.color as "indigo" | "cyan" | "violet"}
+                              />
+                            </div>
                           </div>
 
                           {/* Description */}

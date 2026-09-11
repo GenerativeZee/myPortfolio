@@ -8,6 +8,7 @@ import {
   StaggerContainer,
   staggerItem,
 } from "@/components/animations";
+import AgentFlow, { type FlowStep } from "@/components/AgentFlow";
 import {
   Bot,
   Database,
@@ -17,6 +18,7 @@ import {
   Star,
   ArrowRight,
   Sparkles,
+  Workflow,
 } from "lucide-react";
 import { GithubIcon } from "@/components/icons";
 
@@ -29,6 +31,7 @@ interface Project {
   color: string;
   featured?: boolean;
   tags: string[];
+  flow: FlowStep[];
   details: {
     problem: string;
     solution: string;
@@ -57,6 +60,13 @@ const projects: Project[] = [
       "Claude Sonnet",
       "RAG",
       "Databricks",
+    ],
+    flow: [
+      { label: "Classify Queue" },
+      { label: "Route (MCP Tools)" },
+      { label: "Draft (RAG + DSPy)" },
+      { label: "Audit (9 Guardrails)" },
+      { parallel: ["Autonomous Send", "Human Escalation"] },
     ],
     details: {
       problem:
@@ -89,6 +99,12 @@ const projects: Project[] = [
       "DSPy",
       "Claude Sonnet",
     ],
+    flow: [
+      { label: "Query" },
+      { label: "Site-Isolated Retrieval" },
+      { label: "Vector Search + Memory" },
+      { label: "Grounded Answer" },
+    ],
     details: {
       problem:
         "Plant teams needed citable answers from thousands of pages of structured and unstructured SOPs across multiple sites, where any cross-site data exposure is a compliance failure.",
@@ -112,6 +128,12 @@ const projects: Project[] = [
     icon: FileText,
     color: "violet",
     tags: ["LangChain", "LangGraph", "SQL", "Dense Retrieval", "Claude"],
+    flow: [
+      { label: "Query" },
+      { label: "Runtime Classify" },
+      { parallel: ["SQL Retrieval", "Dense Retrieval"] },
+      { label: "Fuse & Answer" },
+    ],
     details: {
       problem:
         "Vendor-agreement queries required cross-referencing structured contract metadata in databases against clause text inside the agreements; neither SQL nor dense retrieval alone covered both.",
@@ -358,6 +380,20 @@ export default function ProjectsSection() {
                   <p className="text-zinc-300 text-sm leading-relaxed">
                     {selected.details.solution}
                   </p>
+                </div>
+
+                {/* Agent Flow */}
+                <div>
+                  <h4 className="flex items-center gap-1.5 text-xs font-medium text-zinc-500 uppercase tracking-wider mb-3">
+                    <Workflow size={12} />
+                    Agent Flow
+                  </h4>
+                  <div className="bg-white/[0.02] rounded-xl border border-white/[0.04] p-4">
+                    <AgentFlow
+                      steps={selected.flow}
+                      color={selected.color as "indigo" | "cyan" | "violet"}
+                    />
+                  </div>
                 </div>
 
                 {/* Highlights */}
