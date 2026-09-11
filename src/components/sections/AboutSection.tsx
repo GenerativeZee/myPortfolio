@@ -28,9 +28,9 @@ const highlights = [
       "Building self-improving eval harnesses on MLflow and DSPy — SME-reviewed eval sets, LLM-as-Judge scoring, and automated prompt optimization with zero-redeploy promotion.",
   },
   {
-    title: "Hybrid RAG & Retrieval",
+    title: "Agent Memory & Continuous Learning",
     description:
-      "Engineering dual-retrieval systems that route between SQL and Databricks Vector Search, with site-isolated retrieval and dual short/long-term agent memory.",
+      "Designing full agent memory systems — procedural, semantic, and episodic — with closed feedback loops that keep agents improving after deployment, no redeploy needed.",
   },
   {
     title: "Production AI Infrastructure",

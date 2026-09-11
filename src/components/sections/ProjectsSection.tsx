@@ -88,7 +88,7 @@ const projects: Project[] = [
     title: "REIMS — Enterprise Plant SOP Agent",
     subtitle: "Azure Databricks · Multi-Site RAG Deployment",
     description:
-      "Citable RAG agent over thousands of pages of structured and unstructured plant SOPs, with dual memory, site-isolated retrieval, and a self-improving eval harness.",
+      "Citable RAG agent over thousands of pages of structured and unstructured plant SOPs, with a full procedural/semantic/episodic memory system and a closed feedback loop that keeps improving the agent after deployment.",
     icon: Database,
     color: "cyan",
     tags: [
@@ -102,20 +102,21 @@ const projects: Project[] = [
     flow: [
       { label: "Query" },
       { label: "Site-Isolated Retrieval" },
-      { label: "Vector Search + Memory" },
+      { parallel: ["Semantic Memory", "Episodic Memory", "Procedural Memory"] },
       { label: "Grounded Answer" },
+      { label: "Feedback Loop → Memory Update" },
     ],
     details: {
       problem:
         "Plant teams needed citable answers from thousands of pages of structured and unstructured SOPs across multiple sites, where any cross-site data exposure is a compliance failure.",
       solution:
-        "Drove the build from solution design through UAT sign-off and production deployment. Implemented dual memory — short-term per-thread state plus long-term user memory persisted in Lakebase — and enforced site isolation inside the retrieval layer, filtering every query by the authenticated user's authorized sites. Built a self-improving eval harness: thumbs up/down → MLflow traces → 500-example SME-reviewed eval set → automated DSPy prompt optimization → winning prompt promoted via MLflow versioning, no redeploy.",
+        "Drove the build from solution design through UAT sign-off and production deployment. Designed an end-to-end agent memory system — procedural memory (how to plan and act), semantic memory (SOP facts and domain knowledge), and episodic memory (past interactions) — persisted in Lakebase and enforced site isolation inside the retrieval layer, filtering every query by the authenticated user's authorized sites. Closed the feedback loop so the agent keeps improving after deployment: thumbs up/down → MLflow traces → 500-example SME-reviewed eval set → automated DSPy prompt optimization → winning prompt promoted via MLflow versioning, no redeploy.",
       highlights: [
+        "Full procedural + semantic + episodic memory architecture via Lakebase",
+        "Closed feedback loop continuously improves the agent post-deployment",
         "p95 latency under 4s",
         "Groundedness ≥0.85, citation completeness ≥0.95",
         "Zero cross-site data leaks in production",
-        "Dual short-term / long-term agent memory via Lakebase",
-        "Self-improving eval harness with SME-aligned LLM judges",
       ],
     },
   },

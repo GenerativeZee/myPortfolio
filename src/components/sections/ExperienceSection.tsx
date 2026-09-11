@@ -72,13 +72,13 @@ const projects: ProjectDetail[] = [
     icon: Database,
     color: "cyan",
     impact: [
+      "Full agent memory system: procedural, semantic & episodic, backed by Lakebase",
+      "Closed feedback loop continuously improves the agent post-deployment",
       "p95 latency under 4s with citable, groundedness ≥0.85 answers",
-      "Citation completeness ≥0.95 across structured and unstructured SOPs",
       "Zero cross-site data leaks in production",
-      "Self-improving eval harness promotes winning prompts with no redeploy",
     ],
     description:
-      "Drove the build from solution design through UAT sign-off and production deployment across multi-site plant operations. Implemented dual memory — short-term per-thread state plus long-term user memory persisted in Lakebase — exposed as read/write/delete tools the agent invokes autonomously. Enforced site isolation inside the retrieval layer, filtering every query by the authenticated user's authorized sites. Built a self-improving eval harness: thumbs up/down → MLflow traces → 500-example SME-reviewed eval set → automated DSPy prompt optimization scored by SME-aligned LLM judges → winning prompt promoted via MLflow versioning.",
+      "Drove the build from solution design through UAT sign-off and production deployment across multi-site plant operations. Designed an end-to-end agent memory system spanning procedural memory (how to plan and act), semantic memory (SOP facts and domain knowledge), and episodic memory (past interactions) — persisted in Lakebase and exposed as read/write/delete tools the agent invokes autonomously. Enforced site isolation inside the retrieval layer, filtering every query by the authenticated user's authorized sites. Closed the feedback loop so the agent keeps improving after deployment: thumbs up/down → MLflow traces → 500-example SME-reviewed eval set → automated DSPy prompt optimization scored by SME-aligned LLM judges → winning prompt promoted via MLflow versioning, no redeploy.",
     techStack: [
       "Azure Databricks",
       "Databricks Vector Search",
@@ -88,16 +88,17 @@ const projects: ProjectDetail[] = [
       "Claude Sonnet",
     ],
     metrics: [
+      { label: "Memory Types", value: "3" },
       { label: "p95 Latency", value: "<4s" },
       { label: "Groundedness", value: "≥0.85" },
-      { label: "Citation Complete", value: "≥0.95" },
       { label: "Cross-site Leaks", value: "Zero" },
     ],
     flow: [
       { label: "Query" },
       { label: "Site-Isolated Retrieval" },
-      { label: "Vector Search + Memory" },
+      { parallel: ["Semantic Memory", "Episodic Memory", "Procedural Memory"] },
       { label: "Grounded Answer" },
+      { label: "Feedback Loop → Memory Update" },
     ],
   },
   {
