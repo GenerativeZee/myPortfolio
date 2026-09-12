@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import SectionHeading from "@/components/SectionHeading";
 import { FadeInUp } from "@/components/animations";
 import AgentFlow, { type FlowStep } from "@/components/AgentFlow";
@@ -98,7 +98,7 @@ const projects: ProjectDetail[] = [
       { label: "Site-Isolated Retrieval" },
       { parallel: ["Semantic Memory", "Episodic Memory", "Procedural Memory"] },
       { label: "Grounded Answer" },
-      { label: "Feedback Loop → Memory Update" },
+      { label: "Feedback Loop" },
     ],
   },
   {
@@ -156,6 +156,17 @@ const colorStyles: Record<
 
 export default function ExperienceSection() {
   const [expanded, setExpanded] = useState<string | null>("email-ai");
+  const cardRefs = useRef<Record<string, HTMLDivElement | null>>({});
+
+  useEffect(() => {
+    if (!expanded) return;
+    const el = cardRefs.current[expanded];
+    if (!el) return;
+    const timeout = setTimeout(() => {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 120);
+    return () => clearTimeout(timeout);
+  }, [expanded]);
 
   return (
     <section id="experience" className="relative py-24 md:py-32">
@@ -208,7 +219,12 @@ export default function ExperienceSection() {
 
             return (
               <FadeInUp key={project.id} delay={0.15 + index * 0.05}>
-                <div className="glass rounded-2xl overflow-hidden card-hover">
+                <div
+                  ref={(el) => {
+                    cardRefs.current[project.id] = el;
+                  }}
+                  className="glass rounded-2xl overflow-hidden card-hover scroll-mt-28"
+                >
                   {/* Header */}
                   <button
                     onClick={() =>

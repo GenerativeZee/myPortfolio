@@ -68,7 +68,7 @@ export default function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden pt-20 pb-12"
+      className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden pt-20 pb-20 md:pb-24"
       onMouseMove={handleMouseMove}
     >
       {/* Background Effects */}
@@ -263,7 +263,7 @@ export default function HeroSection() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.1 }}
-            className="flex items-center justify-center gap-4 mt-10"
+            className="flex items-center justify-center gap-4 mt-8"
           >
             <a
               href="https://github.com/Ali-18sep"

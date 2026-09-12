@@ -104,7 +104,7 @@ const projects: Project[] = [
       { label: "Site-Isolated Retrieval" },
       { parallel: ["Semantic Memory", "Episodic Memory", "Procedural Memory"] },
       { label: "Grounded Answer" },
-      { label: "Feedback Loop → Memory Update" },
+      { label: "Feedback Loop" },
     ],
     details: {
       problem:
