@@ -157,8 +157,13 @@ const colorStyles: Record<
 export default function ExperienceSection() {
   const [expanded, setExpanded] = useState<string | null>("email-ai");
   const cardRefs = useRef<Record<string, HTMLDivElement | null>>({});
+  const isFirstRender = useRef(true);
 
   useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
     if (!expanded) return;
     const el = cardRefs.current[expanded];
     if (!el) return;
